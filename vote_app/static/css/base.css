@@ -1,0 +1,32 @@
+body {
+	background-color: #f0f0f0;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+h1 {
+	font-size: 72px;
+	color: #ff5722;
+	margin-top: 200px;
+	text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.15);
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ff5722;
+	color: #fff;
+	font-size: 24px;
+	border-radius: 5px;
+	margin: 20px;
+	text-decoration: none;
+	box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+	transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+	background-color: #f44336;
+	box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}

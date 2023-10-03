@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .candidate-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
+  }
+  
+  .candidate-list li {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .candidate-list li img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+  
+  .candidate-info h2 {
+    margin-bottom: 10px;
+  }
+  
+  .candidate-info p {
+    margin-bottom: 20px;
+  }
+  
+  .vote-btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .vote-btn:hover {
+    background-color: #3e8e41;
+  }
+  
+  
+
+
+  

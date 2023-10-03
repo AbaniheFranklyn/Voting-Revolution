@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PRESIDENT Election Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>PRESIDENT Election Results</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Political Party</th>
+                <th>Total Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for party, votes in results.items %}
+            
+            <tr>
+                <td>{{ party }}</td>
+                <td>{{ votes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login | Voting Website</title>
+	<link rel="stylesheet" href="{% static 'css/login.css' -%}">
+</head>
+<body>
+	<div class="container">
+		<h1>Login</h1>
+		<form method="POST" action="{% url 'vote_app:login' %}">
+			{%csrf_token%}
+			<div class="form-group">
+				<label for="username">Username</label>
+				<!-- <input type="text" id="username" name="username"> -->
+				<input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<!-- <input type="password" id="password" name="password">-->
+				<input type="password" name="password" autocomplete="current-password" required id="id_password">
+
+			</div>
+			<!--<input type="submit" name="submit" value="Login">
+			<input type="hidden" value="{% url 'vote_app:vote' %}" />-->
+
+			<button type="submit" name="submit">Login</button>
+			<input type="hidden" name="next" value="{% url 'vote_app:vote' %}"/>
+		</form>
+		<p>Not registered yet? <a href="{% url 'vote_app:signup' %}">Create an account</a></p>
+	</div>
+</body>
+</html>

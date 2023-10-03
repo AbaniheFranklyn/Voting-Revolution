@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Voting has not started</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #eee;
+		}
+		.countdown-container {
+			background-color: #fff;
+			border: 2px solid #ccc;
+			border-radius: 15px;
+			box-shadow: 0px 0px 10px #ccc;
+			padding: 20px;
+			margin: 50px auto;
+			max-width: 500px;
+			text-align: center;
+		}
+		.countdown {
+			font-size: 60px;
+			font-weight: bold;
+			color: #333;
+			margin-bottom: 20px;
+		}
+		.countdown-label {
+			font-size: 20px;
+			color: #666;
+			margin-bottom: 10px;
+		}
+		.button {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			text-transform: uppercase;
+			font-weight: bold;
+			transition: background-color 0.3s ease;
+			cursor: pointer;
+		}
+		.button:hover {
+			background-color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div class="countdown-container">
+		<div class="countdown"></div>
+		<div class="countdown-label">until the voting period starts</div>
+		<button class="button" onclick="redirectToHome()">Go to Home Page</button>
+	</div>
+	<script>
+		// Set the date of the voting period start
+		var start_date = "{{ period.start_date|date:'Y-m-d H:i:s' }}";
+		var countDownDate = new Date(start_date).getTime();
+
+		// Update the countdown every second
+		var x = setInterval(function() {
+			// Get the current time
+			var now = new Date().getTime();
+
+			// Calculate the time remaining until the voting period starts
+			var distance = countDownDate - now;
+
+			// Calculate days, hours, minutes and seconds remaining
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Display the countdown
+			document.querySelector(".countdown").innerHTML = days + "d " + hours + "h "
+			+ minutes + "m " + seconds + "s ";
+
+			// If the countdown is finished, redirect to the home page
+			if (distance < 0) {
+				clearInterval(x);
+				redirectToHome();
+			}
+		}, 1000);
+
+		// Redirect to the home page
+		function redirectToHome() {
+			window.location.href = "{% url 'vote_app:vote' %}";
+		}
+	</script>
+</body>
+</html>

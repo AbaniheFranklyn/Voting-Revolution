@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inec Vote</title>
+    <link rel="stylesheet" type=" text/css" href="{% static 'css/base.css' %}" />
+</head>
+<body>
+    <h1>Vote For Change</h1>
+	<a href="{% url 'vote_app:login' %}" class="btn">Login</a>
+	<a href="{% url 'vote_app:signup' %}" class="btn">Register</a>
+    <a href="{% url 'vote_app:result' %}" class="btn">View Result</a>
+    <marquee behavior="" direction=""><img src="" alt=""></marquee>
+</body>
+</html>

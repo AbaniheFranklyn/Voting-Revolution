@@ -1,0 +1,76 @@
+{% load static %}
+{% if user.is_authenticated %}
+<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>E-Voting</title>
+        <link rel="shortcut icon" href="{% static 'images/fav.png' %}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'images/fav.jpg' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" type=" text/css" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div class="header container-fluid bg-white">
+            <div id="menu-jk" class="nav-col text-white shadow-md mb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 pt-2 pb-2 align-items-center">
+                            <img class="max-230 mt-1" src="{% static 'images/logo.png' %}" alt="">
+                        </div>
+                        <div id="menu" class="col-lg--8 d-none d-lg-block">
+                            
+                            <ul class="float-end mul d-inline-block">
+    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-xl big-padding">
+            <div class="row section-title">
+                <h2 class="h2.fs-4">GOVERNORSHIP ELECTION</h2>
+                <h2 class="h2.fs-4">{{user.voter.state}} state</h2>
+            </div>
+        </div>
+            
+        <div class="row">
+            {% for candidate in candidates %}
+    {% if candidate.political_party.candidate_level.level_name == "HOUSE OF REP" %}
+        <div class="col-lg-4 col-md-6 candidate">
+            <div class="text-white text-center mb-4 votcard shadow-md bg-white p-4 pt-5">
+                <img class="rounded-pill shadow-md p-2" src="{{ candidate.political_party.party_logo.url }}" alt="">
+                <h4 class="mt-3 fs-5 mb-1 fw-bold">{{ candidate.political_party }}</h4>
+                <h4 class="mt-3 fs-5 mb-1 fw-bold">{{ candidate.name }}</h4> 
+                <form method="POST" action="{% url 'vote_app:gov' %}">
+                    {% csrf_token %}
+                    <button name = "vote" value = 'submit' type="submit" class="btn btn-danger fw-bolder px-4 ms-2 fs-8">Vote</button>
+                    <input type="hidden" name="candidate_party" value="{{candidate.political_party}}">
+                    <input type="hidden" name="candidate_level" value="{{candidate.political_party.candidate_level}}">
+                    <input type="hidden" name="candidate_name" value="{{candidate.name}}">
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <!-- Do nothing or display a message that the candidate does not exist for this level -->
+        
+    {% endif %}
+{% endfor %}
+
+        </div>
+
+    </body>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+    <script src="{% static 'plugins/testimonial/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+</html>
+{% endif %}

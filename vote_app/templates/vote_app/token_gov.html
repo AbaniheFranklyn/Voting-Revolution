@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Token Verification Example</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			font-family: Arial, sans-serif;
+			background-color: #F2F2F2;
+		}
+
+		h1 {
+			margin-top: 0;
+			color: #333;
+			text-align: center;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 5px;
+			color: #555;
+			font-size: 16px;
+		}
+
+		button {
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #333;
+			color: #FFF;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 10px;
+			transition: background-color 0.3s ease;
+		}
+
+		button:hover {
+			background-color: #555;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			border: 1px solid #AAA;
+			border-radius: 5px;
+			font-size: 16px;
+			margin-top: 10px;
+		}
+
+		.loader {
+			border: 10px solid #f3f3f3;
+			border-top: 10px solid #333;
+			border-radius: 50%;
+			width: 80px;
+			height: 80px;
+			animation: spin 2s linear infinite;
+			margin-top: 20px;
+			display: none;
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		.sent-message {
+			color: green;
+			font-size: 16px;
+			margin-top: 10px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Token Verification For Governor</h1>
+	{% for message in messages %}
+    <h2>{{ message }}</h2>
+    {% endfor %}
+	<form method="POST" action="{% url 'vote_app:gov_tvn' %}">
+		{% csrf_token %}
+	<p>Click the button below to request a token:</p>
+	<button id="request-token" value="submit" name="get-token" type="submit">Request Token</button>
+	<p>Enter the token code you received:</p>
+		<input type="text" id="token-code" name="token-code">
+		<button name="verify-token" type="submit" value="submit">Verify Token</button>
+	</form>
+</body>
+</html>
